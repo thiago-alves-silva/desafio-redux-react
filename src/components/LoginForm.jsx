@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
 import { login } from "../store/login";
+import Loading from "./helper/Loading";
 import styles from "./LoginForm.module.css";
 
 const LoginForm = () => {
@@ -55,9 +56,13 @@ const LoginForm = () => {
             disabled={loading}
           />
         </label>
-        <button className={styles.button} disabled={loading}>
-          {loading ? "Entrando..." : "Entrar"}
-        </button>
+        <div style={{ height: "40px" }}>
+          {loading ? (
+            <Loading />
+          ) : (
+            <button className={styles.button}>Entrar</button>
+          )}
+        </div>
         <p
           className={styles.error}
           dangerouslySetInnerHTML={{ __html: error }}

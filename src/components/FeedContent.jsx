@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { fetchPhotos } from "../store/photos";
 import Image from "./helper/Image";
 import styles from "./FeedContent.module.css";
+import Loading from "./helper/Loading";
 
 const FeedContent = ({ page }) => {
   const [photos, setPhotos] = useState(null);
@@ -24,7 +25,7 @@ const FeedContent = ({ page }) => {
           <span className={styles.nome}>{photo.title}</span>
           <span className={styles.acessos}>{photo.acessos}</span>
         </li>
-      )) || <p>Carregando...</p>}
+      )) || <Loading />}
     </>
   );
 };

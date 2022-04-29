@@ -1,0 +1,25 @@
+.loading {
+  background: #333;
+  border-radius: 2px;
+  overflow: hidden;
+  margin: 2rem auto;
+  width: 50%;
+  height: 3px;
+}
+.loading::before {
+  content: "";
+  display: block;
+  background: #eee;
+  animation: loading 0.5s forwards infinite;
+  width: 75%;
+  height: 3px;
+}
+
+@keyframes loading {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(135%);
+  }
+}

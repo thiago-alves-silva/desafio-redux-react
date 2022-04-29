@@ -21,8 +21,6 @@ const slice = createAsyncSlice({
   }),
 });
 
-export const fetchPhotos = (page) => (dispatch) => {
-  return dispatch(slice.asyncAction(page));
-};
+export const fetchPhotos = slice.asyncAction;
 
 export default slice.reducer;
