@@ -31,3 +31,8 @@
   pointer-events: none;
   opacity: 0.5;
 }
+
+.error {
+  color: #c00;
+  margin: 1rem 0;
+}

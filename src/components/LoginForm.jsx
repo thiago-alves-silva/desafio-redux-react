@@ -8,6 +8,7 @@ const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const { token, user } = useSelector((state) => state.login);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -24,6 +25,10 @@ const LoginForm = () => {
     setLoading(token.loading || user.loading);
   }, [token.loading, user.loading]);
 
+  useEffect(() => {
+    setError(token.error || user.error);
+  }, [token.error, user.error]);
+
   if (token.data) return <Navigate to="/conta" />;
   return (
     <section>
@@ -35,22 +40,28 @@ const LoginForm = () => {
             className={styles.input}
             value={username}
             onChange={({ target }) => setUsername(target.value)}
+            autoComplete="username"
             disabled={loading}
           />
         </label>
         <label className={styles.label}>
           Senha
           <input
-            type="text"
+            type="password"
             className={styles.input}
             value={password}
             onChange={({ target }) => setPassword(target.value)}
+            autoComplete="current-password"
             disabled={loading}
           />
         </label>
         <button className={styles.button} disabled={loading}>
           {loading ? "Entrando..." : "Entrar"}
         </button>
+        <p
+          className={styles.error}
+          dangerouslySetInnerHTML={{ __html: error }}
+        ></p>
       </form>
     </section>
   );

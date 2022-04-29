@@ -45,20 +45,27 @@ const user = createAsyncSlice({
   }),
 });
 
-export const login = (userData) => async (dispatch) => {
+export const login = (userData) => async (dispatch, getState) => {
   const { payload } = await dispatch(token.asyncAction(userData));
-  dispatch(user.asyncAction(payload.token));
+  const { login } = getState();
+  if (login.token.data) {
+    dispatch(user.asyncAction(payload.token));
+  }
 };
 
 export const autoLogin = () => async (dispatch, getState) => {
   const { login } = getState();
   const tokenData = token.getInitialState().data;
   if (tokenData && !login.user.data) {
-    dispatch(user.asyncAction(tokenData));
+    await dispatch(user.asyncAction(tokenData));
+    const { login } = getState();
+    if (login.user.error) {
+      dispatch(logout());
+    }
   }
 };
 
-export const logout = () => async (dispatch) => {
+export const logout = () => (dispatch) => {
   window.localStorage.removeItem("token");
   dispatch(user.reset());
   dispatch(token.reset());
