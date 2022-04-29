@@ -54,8 +54,8 @@ export const login = (userData) => async (dispatch, getState) => {
 };
 
 export const autoLogin = () => async (dispatch, getState) => {
-  const { login } = getState();
   const tokenData = token.getInitialState().data;
+  const { login } = getState();
   if (tokenData && !login.user.data) {
     await dispatch(user.asyncAction(tokenData));
     const { login } = getState();

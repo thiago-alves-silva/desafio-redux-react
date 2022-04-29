@@ -2,10 +2,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
   padding: 30px 0;
 }
 
 .logout {
+  flex-shrink: 0;
   border-radius: 50%;
   border: 2px solid #333;
   cursor: pointer;

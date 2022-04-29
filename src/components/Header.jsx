@@ -14,11 +14,14 @@ const Header = () => {
     <header className={`container ${styles.header}`}>
       <h1>Mini Dogs</h1>
       <button
-        disabled={!user.data}
-        className={`${styles.logout} ${
-          token.loading || user.loading ? styles.loading : ""
-        } ${user.data ? styles.logged : ""}`}
+        title="Logout"
+        aria-label="Logout"
+        className={`
+        ${styles.logout} 
+        ${token.loading || user.loading ? styles.loading : ""} 
+        ${user.data ? styles.logged : ""}`}
         onClick={handleClick}
+        disabled={!user.data}
       ></button>
     </header>
   );
