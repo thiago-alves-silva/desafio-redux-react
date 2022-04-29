@@ -1,0 +1,33 @@
+.label {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.input {
+  display: block;
+  font-size: 1rem;
+  outline-color: #333;
+  padding: 0.6rem 0.8rem;
+  width: 100%;
+}
+
+.button {
+  background: #333;
+  color: #fff;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  border: 2px solid transparent;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  transition: 0.2s;
+  padding: 0.5rem 1rem;
+}
+.button:hover,
+.button:focus {
+  background: #444;
+  border-color: #333;
+}
+.button:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}

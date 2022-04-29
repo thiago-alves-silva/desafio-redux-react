@@ -1,0 +1,21 @@
+.item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  background: #eee;
+  list-style: none;
+  border-radius: 0.3rem;
+  margin-bottom: 1rem;
+}
+
+.nome {
+  color: #333;
+  font-weight: 700;
+}
+
+.acessos {
+  color: #aaa;
+  font-family: monospace;
+  margin-right: 1rem;
+}
