@@ -3,9 +3,7 @@ import { logout } from "../store/login";
 import styles from "./Header.module.css";
 
 const Header = () => {
-  const {
-    user: { loading, data },
-  } = useSelector((state) => state.login);
+  const { user, token } = useSelector((state) => state.login);
   const dispatch = useDispatch();
 
   const handleClick = () => {
@@ -15,9 +13,13 @@ const Header = () => {
   return (
     <header className={`container ${styles.header}`}>
       <h1>Mini Dogs</h1>
-      <button disabled={!data} onClick={handleClick}>
-        Logout
-      </button>
+      <button
+        disabled={!user.data}
+        className={`${styles.logout} ${
+          token.loading || user.loading ? styles.loading : ""
+        } ${user.data ? styles.logged : ""}`}
+        onClick={handleClick}
+      ></button>
     </header>
   );
 };

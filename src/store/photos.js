@@ -22,7 +22,7 @@ const slice = createAsyncSlice({
 });
 
 export const fetchPhotos = (page) => (dispatch) => {
-  dispatch(slice.asyncAction(page));
+  return dispatch(slice.asyncAction(page));
 };
 
 export default slice.reducer;

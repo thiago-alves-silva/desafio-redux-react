@@ -1,21 +1,32 @@
-.item {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
+.loadMore {
+  position: relative;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 1rem;
-  background: #eee;
-  list-style: none;
-  border-radius: 0.3rem;
-  margin-bottom: 1rem;
+  background: #333;
+  border: 3px solid transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s;
+  margin: auto;
+  width: 40px;
+  height: 40px;
+}
+.loadMore::before,
+.loadMore::after {
+  content: "";
+  position: absolute;
+  display: block;
+  background: #fff;
+  width: 15px;
+  height: 3px;
+}
+.loadMore::after {
+  transform: rotate(90deg);
 }
 
-.nome {
-  color: #333;
-  font-weight: 700;
-}
-
-.acessos {
-  color: #aaa;
-  font-family: monospace;
-  margin-right: 1rem;
+.loadMore:hover,
+.loadMore:focus {
+  background: #444;
+  border-color: #333;
 }
