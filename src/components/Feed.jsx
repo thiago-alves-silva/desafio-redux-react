@@ -1,27 +1,31 @@
-import React, { useState } from "react";
 import FeedContent from "./FeedContent";
 import styles from "./Feed.module.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchPhotos } from "../store/photos";
 import Loading from "./helper/Loading";
+import { useEffect } from "react";
 
 const Feed = () => {
-  const [page, setPage] = useState([1]);
   const { user } = useSelector((state) => state.login);
+  const { page, loading, hasContent } = useSelector((state) => state.photos);
+  const dispatch = useDispatch();
 
   const handleClick = () => {
-    setPage((page) => [...page, page.length + 1]);
+    dispatch(fetchPhotos(page + 1));
   };
+
+  useEffect(() => {
+    dispatch(fetchPhotos(1));
+  }, [dispatch]);
 
   return (
     <section>
       {user.data ? (
         <>
-          <ul>
-            {page.map((page) => (
-              <FeedContent key={page} page={page} />
-            ))}
-          </ul>
-          <button className={styles.loadMore} onClick={handleClick}></button>
+          <FeedContent />
+          {hasContent && !loading && (
+            <button className={styles.loadMore} onClick={handleClick}></button>
+          )}
         </>
       ) : (
         <Loading />

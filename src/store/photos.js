@@ -4,12 +4,28 @@ const slice = createAsyncSlice({
   name: "photos",
   initialState: {
     data: [],
+    page: 0,
+    hasContent: true,
   },
   reducers: {
-    fetchSuccess(state, action) {
+    fetchSuccess(state, { payload }) {
       state.loading = false;
-      state.data.push(...action.payload);
-      state.error = null;
+      if (payload.length) {
+        // verifica se o payload é uma repetição do anterior
+        // causado pelo React.StrictMode
+        const repeat = payload.every((item) =>
+          state.data.find(({ id }) => item.id === id)
+        );
+        if (!repeat) {
+          state.data.push(...payload);
+          state.page++;
+        }
+      } else state.hasContent = false;
+    },
+    clearPhotos(state) {
+      state.data = [];
+      state.page = 0;
+      state.hasContent = true;
     },
   },
   fetchConfig: (page) => ({
@@ -22,5 +38,6 @@ const slice = createAsyncSlice({
 });
 
 export const fetchPhotos = slice.asyncAction;
+export const { clearPhotos } = slice.actions;
 
 export default slice.reducer;

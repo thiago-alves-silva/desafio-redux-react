@@ -33,7 +33,7 @@ const LoginForm = () => {
   if (token.data) return <Navigate to="/conta" />;
   return (
     <section>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="anime-left">
         <label className={styles.label}>
           Usuário
           <input

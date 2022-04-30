@@ -1,6 +1,7 @@
 import { combineReducers } from "@reduxjs/toolkit";
 import createAsyncSlice from "./helper/createAsyncSlice";
 import getLocalStorage from "./helper/getLocalStorage";
+import { clearPhotos } from "./photos";
 
 const token = createAsyncSlice({
   name: "token",
@@ -69,6 +70,7 @@ export const logout = () => (dispatch) => {
   window.localStorage.removeItem("token");
   dispatch(user.reset());
   dispatch(token.reset());
+  dispatch(clearPhotos());
 };
 
 const reducer = combineReducers({ token: token.reducer, user: user.reducer });
